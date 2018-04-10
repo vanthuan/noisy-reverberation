@@ -42,7 +42,7 @@ noiseLevels = 66:6:90; shiftedEnv = 17; numsGauss = [2 2 2]; numsSmooth = [5 5 5
 n_alls= [60];
 check =0; utter = 60;
 
-func='LogEnvelope1';avg_type= 1;; tops = length(n_alls);
+func='LogEnvelope1';avg_type= 2; tops = length(n_alls);
 
 f_unchanged_vowel = 5;
 e_unchanged_vowel= 0;
@@ -132,7 +132,7 @@ end
 % Spectral Differences between phonemes
 % upper
 types = {'Vowels','Voiced Consonants','Unvoiced Consonants'};
-func_model = str2func(['@(x,type,parameter)mathematical_gauss_diff_top' num2str(n_alls(1)) func date '(x,type,parameter)' ]);
+func_model = str2func(['@(x,type,parameter)mathematical_gauss_diff_top' num2str(n_alls(1)) '_' num2str(avg_type) '_' date '(x,type,parameter)' ]);
 gmm_para_phonemes =cell(1,6);
 
 for u=2:6
@@ -149,7 +149,7 @@ for u=2:6
 end
 % lower
 types = {'Vowels','Voiced Consonants','Unvoiced Consonants'};
-func_model = str2func(['@(x,type,parameter)mathematical_gauss_diff_lower_top' num2str(n_alls(1)) func date '(x,type,parameter)' ]);
+func_model = str2func(['@(x,type,parameter)mathematical_gauss_diff_lower_top' num2str(n_alls(1)) '_' num2str(avg_type) '_' date '(x,type,parameter)' ]);
 gmm_para_phonemes_lower =cell(1,6);
 
 for u=2:6
@@ -167,7 +167,7 @@ end
 
 % Spectral difference between morae
 types = {'Vowels','Consonants'};
-func_model = str2func(['@(x,type,parameter)mathematical_gauss_moradiff_top' num2str(n_alls(1))  func date '(x,type,parameter)' ]);
+func_model = str2func(['@(x,type,parameter)mathematical_gauss_moradiff_top' num2str(n_alls(1)) '_'  num2str(avg_type) '_' date '(x,type,parameter)' ]);
 gmm_para_morae =cell(1,6);
 for u=2:6
     gauss_moras = zeros(513,3,length(types));
